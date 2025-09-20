@@ -5,7 +5,6 @@ import com.sparta.myselectshop.dto.ProductRequestDto;
 import com.sparta.myselectshop.dto.ProductResponseDto;
 import com.sparta.myselectshop.security.UserDetailsImpl;
 import com.sparta.myselectshop.service.ProductService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,12 +25,18 @@ public class ProductController {
   private final ProductService productService;
 
   @PostMapping("/products")
-  public ProductResponseDto createProduct(@RequestBody ProductRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+  public ProductResponseDto createProduct(
+      @RequestBody ProductRequestDto requestDto,
+      @AuthenticationPrincipal UserDetailsImpl userDetails
+  ) {
     return productService.createProduct(requestDto, userDetails.getUser());
   }
 
   @PutMapping("/products/{id}")
-  public ProductResponseDto updateProduct(@PathVariable Long id, @RequestBody ProductMypriceRequestDto requestDto) {
+  public ProductResponseDto updateProduct(
+      @PathVariable Long id,
+      @RequestBody ProductMypriceRequestDto requestDto
+  ) {
     return productService.updateProduct(id, requestDto);
   }
 
@@ -43,7 +48,7 @@ public class ProductController {
       @RequestParam("isAsc") boolean isAsc,
       @AuthenticationPrincipal UserDetailsImpl userDetails
   ) {
-    return productService.getProducts(userDetails.getUser(), page-1, size, sortBy, isAsc);
+    return productService.getProducts(userDetails.getUser(), page - 1, size, sortBy, isAsc);
   }
 
   @PostMapping("/products/{productId}/folder")
@@ -64,6 +69,7 @@ public class ProductController {
       @RequestParam("isAsc") boolean isAsc,
       @AuthenticationPrincipal UserDetailsImpl userDetails
   ) {
-    return productService.getProductsInFolder(folderId, page-1, size, sortBy, isAsc, userDetails.getUser());
+    return productService.getProductsInFolder(
+        folderId, page - 1, size, sortBy, isAsc, userDetails.getUser());
   }
 }

@@ -1,6 +1,5 @@
 package com.sparta.myselectshop.dto;
 
-import com.sparta.myselectshop.entity.Folder;
 import com.sparta.myselectshop.entity.Product;
 import com.sparta.myselectshop.entity.ProductFolder;
 import java.util.ArrayList;
@@ -11,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class ProductResponseDto {
+
   private Long id;
   private String title;
   private String link;
